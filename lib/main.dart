@@ -2,7 +2,7 @@ import 'package:easy_localization/easy_localization.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
-import 'package:test_app/modules/home/bindings/home_binding.dart';
+import 'package:test_app/modules/splash/binding/splash_binding.dart';
 import 'package:test_app/routes/app_pages.dart';
 
 void main() async {
@@ -34,7 +34,7 @@ void main() async {
             localizationsDelegates: context.localizationDelegates,
             supportedLocales: context.supportedLocales,
             locale: context.locale,
-            initialBinding: HomeBinding(),
+            initialBinding: SplashBinding(),
             initialRoute: AppPages.INITIAL,
             getPages: AppPages.routes,
           );
