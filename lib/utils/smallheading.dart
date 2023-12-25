@@ -17,10 +17,11 @@ class Smallheading extends StatelessWidget {
       headingText,
       style: TextStyle(
         fontFamily: 'Inter V',
-        color: ColorConstantsLight.textColor,
+
+        color: ColorConstantsLight.whiteColor,
         // color: const Color(0xff127781),
-        fontWeight: FontWeight.w700,
-        fontSize: 16.sp,
+        fontWeight: FontWeight.w500,
+        fontSize: 17.sp,
       ),
     );
   }

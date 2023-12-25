@@ -3,6 +3,7 @@ import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:dio/dio.dart' as dio;
 import 'package:test_app/utils/app_api.dart';
+import 'package:test_app/utils/color_constant.dart';
 
 class RegisterController extends GetxController {
   @override
@@ -21,6 +22,7 @@ class RegisterController extends GetxController {
   }
 
   var isRegisterLoading = false.obs;
+  var isCheckedTerms = false.obs;
 
   RxBool isVisible = true.obs;
   RxBool isVisible2 = true.obs;
@@ -62,7 +64,7 @@ class RegisterController extends GetxController {
               "User register successfully",
               colorText: Colors.white,
               snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: const Color.fromARGB(255, 80, 174, 250),
+              backgroundColor: ColorConstantsLight.buttonColor,
               duration: const Duration(seconds: 2),
               margin: EdgeInsets.symmetric(
                 horizontal: 10.w,

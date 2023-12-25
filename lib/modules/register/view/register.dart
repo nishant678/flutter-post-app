@@ -3,6 +3,8 @@ import 'package:flutter/widgets.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:get/get.dart';
 import 'package:test_app/modules/register/controller/register_controller.dart';
+import 'package:test_app/utils/color_constant.dart';
+import 'package:test_app/widgets/input_field_signup.dart';
 import 'package:test_app/widgets/inputfield.dart';
 
 import '../../../utils/smallheading.dart';
@@ -26,6 +28,15 @@ class Register extends GetView<RegisterController> {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      appBar: AppBar(
+        leading: GestureDetector(
+            onTap: () {
+              Get.back();
+            },
+            child: Image.asset("assets/img/back_arrow.png")),
+        title: const Text("Sign up"),
+        centerTitle: true,
+      ),
       body: SafeArea(
         child: SingleChildScrollView(
           child: Padding(
@@ -36,47 +47,30 @@ class Register extends GetView<RegisterController> {
                 crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   SizedBox(
-                    height: 30.h,
-                  ),
-                  const Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      TextHeading(text: "Sign Up"),
-                    ],
-                  ),
-                  SizedBox(
-                    height: 30.h,
+                    height: 10.h,
                   ),
                   const Smallheading(headingText: "Name"),
                   SizedBox(
                     height: 5.h,
                   ),
-                  InputField(
+                  InputFieldSignUp(
                     hintText: 'Enter your name',
                     data: "name",
                     textCapitalization: TextCapitalization.sentences,
                     controller: nameController,
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 18.h,
                   ),
-                  const Smallheading(headingText: "email"),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  InputField(
+                  InputFieldSignUp(
                     hintText: 'Enter your email',
                     data: "email",
                     controller: emailController,
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 18.h,
                   ),
-                  const Smallheading(headingText: "Mobile number*"),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  InputField(
+                  InputFieldSignUp(
                     textInputType: TextInputType.number,
                     hintText: 'Enter your mobile no.',
                     maxLength: 10,
@@ -84,14 +78,10 @@ class Register extends GetView<RegisterController> {
                     controller: phoneController,
                   ),
                   SizedBox(
-                    height: 10.h,
-                  ),
-                  const Smallheading(headingText: "password"),
-                  SizedBox(
-                    height: 5.h,
+                    height: 18.h,
                   ),
                   Obx(
-                    () => InputField(
+                    () => InputFieldSignUp(
                       suffix: InkWell(
                         onTap: () {
                           registerController.isVisible2.value =
@@ -108,14 +98,10 @@ class Register extends GetView<RegisterController> {
                     ),
                   ),
                   SizedBox(
-                    height: 10.h,
-                  ),
-                  const Smallheading(headingText: "Confirm password"),
-                  SizedBox(
-                    height: 5.h,
+                    height: 18.h,
                   ),
                   Obx(
-                    () => InputField(
+                    () => InputFieldSignUp(
                       suffix: InkWell(
                         onTap: () {
                           registerController.isVisible.value =
@@ -132,13 +118,9 @@ class Register extends GetView<RegisterController> {
                     ),
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 18.h,
                   ),
-                  const Smallheading(headingText: "User name*"),
-                  SizedBox(
-                    height: 5.h,
-                  ),
-                  InputField(
+                  InputFieldSignUp(
                     hintText: 'Enter user name',
                     data: "user name",
                     controller: userNameController,
@@ -146,18 +128,101 @@ class Register extends GetView<RegisterController> {
                   SizedBox(
                     height: 40.h,
                   ),
+                  Row(
+                    crossAxisAlignment: CrossAxisAlignment.end,
+                    children: [
+                      Obx(
+                        () => Checkbox(
+                          side: BorderSide(
+                              color: ColorConstantsLight.borderColor),
+                          value: registerController.isCheckedTerms.value,
+                          onChanged: (value) {
+                            registerController.isCheckedTerms.value = value!;
+                            print(
+                                "check terms value ${registerController.isCheckedTerms.value}");
+                          },
+                        ),
+                      ),
+                      RichText(
+                        overflow: TextOverflow.clip,
+                        textAlign: TextAlign.end,
+                        textDirection: TextDirection.rtl,
+                        softWrap: false,
+                        maxLines: 3,
+                        textScaleFactor: 1,
+                        text: TextSpan(
+                          text: "I agree with the company's ",
+                          style: TextStyle(
+                            fontFamily: 'Inter V',
+                            color: ColorConstantsLight.textColor,
+                            fontWeight: FontWeight.w400,
+                            fontSize: 17.sp,
+                          ),
+                          children: <TextSpan>[
+                            TextSpan(
+                              text: 'privacy\npolicy',
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontFamily: 'Inter V',
+                                color: ColorConstantsLight.buttonColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17.sp,
+                              ),
+                            ),
+                            TextSpan(
+                              text: ' and ',
+                              style: TextStyle(
+                                fontFamily: 'Inter V',
+                                color: ColorConstantsLight.textColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17.sp,
+                              ),
+                            ),
+                            TextSpan(
+                              text: 'terms of service',
+                              style: TextStyle(
+                                decoration: TextDecoration.underline,
+                                fontFamily: 'Inter V',
+                                color: ColorConstantsLight.buttonColor,
+                                fontWeight: FontWeight.w400,
+                                fontSize: 17.sp,
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ],
+                  ),
+                  SizedBox(
+                    height: 30.h,
+                  ),
                   ElevatedButton(
                     onPressed: () {
                       if (!registerController.isRegisterLoading.value) {
                         if (_formKey.currentState!.validate()) {
-                          registerController.register(
-                            name: nameController.text,
-                            email: emailController.text,
-                            mobile: phoneController.text,
-                            password: passwordController.text,
-                            conPassword: confirmPasswordController.text,
-                            userName: userNameController.text,
-                          );
+                          if (!registerController.isCheckedTerms.value) {
+                            registerController.register(
+                              name: nameController.text,
+                              email: emailController.text,
+                              mobile: phoneController.text,
+                              password: passwordController.text,
+                              conPassword: confirmPasswordController.text,
+                              userName: userNameController.text,
+                            );
+                          } else {
+                            Get.snackbar(
+                              "Missing terms & condition",
+                              "Select terms & condition.",
+                              colorText: Colors.white,
+                              snackPosition: SnackPosition.BOTTOM,
+                              backgroundColor: ColorConstantsLight.buttonColor,
+                              duration: const Duration(seconds: 2),
+                              margin: EdgeInsets.symmetric(
+                                horizontal: 10.w,
+                                vertical: 10.h,
+                              ),
+                            );
+                          }
                         }
                       }
                     },
@@ -198,27 +263,8 @@ class Register extends GetView<RegisterController> {
                     ),
                   ),
                   SizedBox(
-                    height: 10.h,
+                    height: 20.h,
                   ),
-                  Row(
-                    mainAxisAlignment: MainAxisAlignment.center,
-                    children: [
-                      Text(
-                        "Already have an account?",
-                        style: TextStyle(fontSize: 15.sp),
-                      ),
-                      GestureDetector(
-                        onTap: () {
-                          Get.back();
-                        },
-                        child: Text(
-                          " Login",
-                          style: TextStyle(
-                              fontSize: 15.sp, fontWeight: FontWeight.w400),
-                        ),
-                      ),
-                    ],
-                  )
                 ],
               ),
             ),

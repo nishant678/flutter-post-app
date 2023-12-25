@@ -2,8 +2,8 @@ import 'package:flutter/material.dart';
 import 'package:flutter_screenutil/flutter_screenutil.dart';
 import 'package:test_app/utils/color_constant.dart';
 
-class InputField extends StatelessWidget {
-  InputField({
+class InputFieldSignUp extends StatelessWidget {
+  InputFieldSignUp({
     Key? key,
     required this.hintText,
     this.prefix,
@@ -71,28 +71,52 @@ class InputField extends StatelessWidget {
         return null;
       },
       decoration: InputDecoration(
+        labelText: hintText,
+        labelStyle: TextStyle(
+          fontFamily: 'Inter V',
+          color: ColorConstantsLight.textColor,
+          fontWeight: FontWeight.w400,
+          fontSize: 16.sp,
+        ),
         counterText: "",
         prefixIcon: prefix,
         filled: true,
         fillColor: Colors.white,
         suffix: suffix,
-        border: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8.r)),
+        enabledBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: BorderSide(
+            width: 1,
+            color: ColorConstantsLight.borderColor,
+          ),
+        ),
+        border: InputBorder.none,
+        errorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
           borderSide: const BorderSide(
-            color: Colors.white,
+            width: 1,
+            color: Colors.red,
+          ),
+        ),
+        focusedErrorBorder: OutlineInputBorder(
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: const BorderSide(
+            width: 1,
+            color: Colors.red,
           ),
         ),
         focusedBorder: OutlineInputBorder(
-          borderRadius: BorderRadius.all(Radius.circular(8.r)),
-          borderSide: const BorderSide(
-            color: Colors.white,
+          borderRadius: BorderRadius.circular(10.r),
+          borderSide: BorderSide(
+            width: 1,
+            color: ColorConstantsLight.borderColor,
           ),
         ),
         hintText: hintText,
         contentPadding: EdgeInsets.symmetric(horizontal: 10.w, vertical: 15.h),
         hintStyle: TextStyle(
           fontFamily: 'Inter V',
-          color: ColorConstantsLight.textColor,
+          color: ColorConstantsLight.hinttextColor,
           fontWeight: FontWeight.w400,
           fontSize: 16.sp,
         ),

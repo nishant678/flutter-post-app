@@ -59,7 +59,7 @@ class LoginController extends GetxController {
               "Login successfully.",
               colorText: Colors.white,
               snackPosition: SnackPosition.BOTTOM,
-              backgroundColor: ColorConstantsLight.primaryColor,
+              backgroundColor: ColorConstantsLight.buttonColor,
               margin: EdgeInsets.symmetric(
                 horizontal: 10.w,
                 vertical: 10.h,
